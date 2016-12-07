@@ -10,6 +10,10 @@ function Thermostat() {
   this.powerMode = true;
 }
 
+  Thermostat.prototype.getCurrentTemperatur = function(){
+    return this.temperature;
+  };
+
   Thermostat.prototype.increaseTemp = function(temp) {
     if(this.powerMode){
       var maxTemp = POWERMODE_TEMP;
@@ -42,6 +46,10 @@ function Thermostat() {
   Thermostat.prototype.reset = function() {
     this.temperature = 20;
     this.powerMode = true;
+  };
+
+  Thermostat.prototype.isSavingMode = function(){
+    return this.powerMode;
   };
 
   Thermostat.prototype.energy = function(){

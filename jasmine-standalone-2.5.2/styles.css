@@ -1,0 +1,24 @@
+h1 {
+  color: red;
+}
+
+#wrapper {
+  width: 80%;
+  margin: auto;
+}
+
+.display {
+  overflow: auto;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.display li {
+  float: left;
+  display: block;
+}
+
+#energy-usage {
+  background-color: red;
+}

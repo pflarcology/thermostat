@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thermostat</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+<div id="wrapper">
+  <h1>Thermostat</h1>
+  <div class="holder">
+    <ul class="display">
+      <li><p>Power mode:</p></li>
+      <li><p>on</P></li>
+      <li><p>Toggle</p></li>
+    </ul>
+  </div>
+
+  <div class="holder">
+    <ul class="display">
+      <li><p>Current Temperatur:</p></li>
+      <li><p>20</P></li>
+    </ul>
+  </div>
+
+  <div>
+    <form>
+      <input type="text" name="increase">
+      <input type="submit" value="Increase Temperature">
+    </form>
+  </div>
+
+  <div>
+    <form>
+      <input type="text" name="decrease">
+      <input type="submit" value="Decrease Temperature">
+    </form>
+  </div>
+
+  <div class="holder">
+    <ul class="display">
+      <li><p>Current energy usage:</p></li>
+      <li><p id="energy-usage">Low-usage</P></li>
+    </ul>
+  </div>
+</div>
+<script src="./src/thermostat.js"></script>
+</body>
+
+</html>
