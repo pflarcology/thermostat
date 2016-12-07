@@ -1,3 +1,5 @@
+'use strict';
+
 const DEFAULT_TEMP = 20;
 const MINIMUM_TEMP = 10;
 const MAXIMUM_TEMP = 32;
@@ -35,4 +37,21 @@ function Thermostat() {
 
   Thermostat.prototype.powerToggle = function() {
     this.powerMode = !this.powerMode;
+  };
+
+  Thermostat.prototype.reset = function() {
+    this.temperature = 20;
+    this.powerMode = true;
+  };
+
+  Thermostat.prototype.energy = function(){
+    if(this.temperature > 25){
+      return 'high-usage';
+    }
+    else if(this.temperature > 18 ) {
+      return 'medium-usage';
+    }
+    else{
+      return 'low-usage';
+    }
   };

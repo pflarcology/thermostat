@@ -1,3 +1,5 @@
+'use strict';
+
 describe('thermostat', function() {
   var thermostat
 
@@ -40,5 +42,28 @@ describe('thermostat', function() {
   it("should throw an error when increasing temp above power mode maximum temp", function(){
     thermostat.powerToggle();
     expect( function(){thermostat.increaseTemp(13)}).toThrow(new Error("Can't increase temperature: trying to go above maximum"))
+  });
+
+  it("should be able to reset the temperature properties", function() {
+    thermostat.increaseTemp(1);
+    thermostat.powerToggle();
+    thermostat.reset();
+    expect(thermostat.temperature).toEqual(20);
+    expect(thermostat.powerMode).toBe(true);
+  });
+
+  it("should be high usage when above 25", function() {
+    thermostat.powerToggle();
+    thermostat.increaseTemp(6);
+    expect(thermostat.energy()).toEqual('high-usage')
+  });
+
+  it("should be medium usage when below 25", function(){
+    expect(thermostat.energy()).toEqual("medium-usage")
+  });
+
+  it("should be low usage when temperatue is below 18", function() {
+    thermostat.decreaseTemp(3);
+    expect(thermostat.energy()).toEqual("low-usage")
   });
 });
