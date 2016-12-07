@@ -10,7 +10,7 @@ function Thermostat() {
   this.powerMode = true;
 }
 
-  Thermostat.prototype.getCurrentTemperatur = function(){
+  Thermostat.prototype.getCurrentTemperature = function(){
     return this.temperature;
   };
 
