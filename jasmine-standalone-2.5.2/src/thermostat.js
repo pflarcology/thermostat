@@ -14,7 +14,7 @@ function Thermostat() {
     return this.temperature;
   };
 
-  Thermostat.prototype.increaseTemp = function(temp) {
+  Thermostat.prototype.increaseTemp = function() {
     if(this.powerMode){
       var maxTemp = POWERMODE_TEMP;
     }
@@ -22,20 +22,20 @@ function Thermostat() {
       var maxTemp = MAXIMUM_TEMP;
     }
 
-    if(this.temperature + temp > maxTemp) {
+    if(this.temperature + 1 > maxTemp) {
       throw Error("Can't increase temperature: trying to go above maximum")
     }
     else {
-      this.temperature += temp;
+      this.temperature += 1;
     }
   };
 
-  Thermostat.prototype.decreaseTemp = function(temp) {
-    if(this.temperature - temp < MINIMUM_TEMP ) {
+  Thermostat.prototype.decreaseTemp = function() {
+    if(this.temperature - 1 < MINIMUM_TEMP ) {
       throw Error("Can't lower temperature: trying to go below minimum");
     }
     else {
-      this.temperature -= temp;
+      this.temperature -= 1;
     }
   };
 

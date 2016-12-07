@@ -13,21 +13,27 @@ describe('thermostat', function() {
   });
 
   it('should be able to increase the temperature by 1', function() {
-    thermostat.increaseTemp(1);
+    thermostat.increaseTemp();
     expect(thermostat.temperature).toEqual(21)
   });
 
   it('should be able to decrease the temperature by 1', function() {
-    thermostat.decreaseTemp(1);
+    thermostat.decreaseTemp();
     expect(thermostat.temperature).toEqual(19)
   });
 
   it("should not be able to go below 10", function(){
-    expect( function(){thermostat.decreaseTemp(11)}).toThrow(new Error("Can't lower temperature: trying to go below minimum"))
+    for(var i=0; i<10; i++) {
+      thermostat.decreaseTemp();
+    };
+    expect( function(){thermostat.decreaseTemp()}).toThrow(new Error("Can't lower temperature: trying to go below minimum"))
   });
 
   it("should not be able to go above 25 when powermode is on", function(){
-    expect( function(){thermostat.increaseTemp(6)}).toThrow(new Error("Can't increase temperature: trying to go above maximum"))
+    for(var i=0; i<5; i++) {
+      thermostat.increaseTemp();
+    };
+    expect( function(){thermostat.increaseTemp()}).toThrow(new Error("Can't increase temperature: trying to go above maximum"))
   });
 
   it("should have a default power mode to on", function(){
@@ -41,7 +47,10 @@ describe('thermostat', function() {
 
   it("should throw an error when increasing temp above power mode maximum temp", function(){
     thermostat.powerToggle();
-    expect( function(){thermostat.increaseTemp(13)}).toThrow(new Error("Can't increase temperature: trying to go above maximum"))
+    for(var i=0; i<12; i++) {
+      thermostat.increaseTemp();
+    };
+    expect( function(){thermostat.increaseTemp()}).toThrow(new Error("Can't increase temperature: trying to go above maximum"))
   });
 
   it("should be able to reset the temperature properties", function() {
@@ -54,7 +63,9 @@ describe('thermostat', function() {
 
   it("should be high usage when above 25", function() {
     thermostat.powerToggle();
-    thermostat.increaseTemp(6);
+    for(var i=0; i<6; i++) {
+      thermostat.increaseTemp();
+    };
     expect(thermostat.energy()).toEqual('high-usage')
   });
 
@@ -63,7 +74,9 @@ describe('thermostat', function() {
   });
 
   it("should be low usage when temperatue is below 18", function() {
-    thermostat.decreaseTemp(3);
+    for(var i=0; i<3; i++) {
+      thermostat.decreaseTemp();
+    };
     expect(thermostat.energy()).toEqual("low-usage")
   });
 });
